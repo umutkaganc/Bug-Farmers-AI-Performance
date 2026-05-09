@@ -1,8 +1,3 @@
-Harika bir referans! Gönderdiğiniz bu yapı gerçekten çok profesyonel ve teknik detaylarla dolu. Projeniz olan **Bug Farmers**'ı tam olarak bu şablona ve tarza uygun, emojilerle desteklenmiş, akademik ve modern bir yapıya büründürdüm.
-
-Aşağıdaki kod bloğunu kopyalayıp doğrudan GitHub'daki README düzenleme ekranına yapıştırabilirsiniz:
-
-```markdown
 # 🚀 Bug Farmers: Yapay Zeka Tabanlı Geliştirici Performans Kestirim Sistemi
 
 Bu proje, yazılım projelerindeki zaman ve bütçe aşımlarının temel nedeni olan "insan faktörünü" ve "bilişsel yorgunluğu" analiz etmek amacıyla geliştirilmiş kapsamlı bir makine öğrenmesi aracıdır. Modern ve kullanıcı dostu bir web arayüzü üzerinden, geliştiricilerin bilişsel yüklerini (stres, uyku, çalışma saati) hesaplayarak performanslarını tahmin etme imkanı sunar.
