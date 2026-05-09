@@ -52,5 +52,5 @@ Proje klasörünü bilgisayarınıza indirdikten sonra, dinamik web arayüzünü
 * **Umut Kağan Ceylan** (23010708011)
 
 ---
-*Bu proje, üniversite "Veri Madenciliği ve Yapay Zeka" dersi kapsamında akademik araştırma ve uygulama projesi olarak geliştirilmiştir.*
+*Bu proje, üniversite "Yapay Zeka" dersi kapsamında akademik araştırma ve uygulama projesi olarak geliştirilmiştir.*
 
