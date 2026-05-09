@@ -97,6 +97,4 @@ Ağaç bazlı ve doğrusal modellerin K-Fold doğrulama (K=5) testleri sonrasın
 
 *(Testler standart donanım üzerinde gerçekleştirilmiş olup, 5-Fold iterasyonları ortalama 4 saniye sürmektedir.)*
 
-## 🤝 Katkıda Bulunma
-Sistemi daha da geliştirmek için **Zaman Serisi (LSTM)** ile gelecek 6 aylık performans düşüşlerini tahminleme veya projeyi bir bulut **API (MLOps)** olarak şirketlerin İK sistemlerine entegre etme fikirlerine açığız. Katkıda bulunmak isterseniz Pull Request gönderebilirsiniz.
-```
+
