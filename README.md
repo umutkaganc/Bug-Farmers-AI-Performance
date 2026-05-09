@@ -37,7 +37,7 @@ Aşırı öğrenmeyi (Overfitting) engellemek amacıyla uygulanan **5-Fold Cross
 * **K-Means Demetleme:** Geliştiriciler; uzaklık metriklerine göre otomatik olarak 3 farklı profile (Tükenmiş, Verimli, Standart) ayrıştırılmıştır.
 * **Sosyal Ağ Analizi (SNA):** Değişkenler birer düğüm (node) olarak modellenmiş; uyku ve stresin ağın akışını kontrol eden en kritik merkezler olduğu *Betweenness Centrality* hesaplamalarıyla kanıtlanmıştır.
 
-## 💻 Kurulum ve Çalıştırma
+## 💻 Kurulumm ve Çalıştırma
 
 Proje klasörünü bilgisayarınıza indirdikten sonra, dinamik web arayüzünü (Dashboard) çalıştırmak için:
 
