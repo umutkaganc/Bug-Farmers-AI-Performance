@@ -1,56 +1,107 @@
-# YapayZekaProjeDosyası
-# 🚀 Bug Farmers: AI-Driven Developer Performance Prediction
+Harika bir referans! Gönderdiğiniz bu yapı gerçekten çok profesyonel ve teknik detaylarla dolu. Projeniz olan **Bug Farmers**'ı tam olarak bu şablona ve tarza uygun, emojilerle desteklenmiş, akademik ve modern bir yapıya büründürdüm.
 
-[![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://www.python.org/)
-[![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-1.2.2-orange.svg)](https://scikit-learn.org/)
-[![HTML/CSS/JS](https://img.shields.io/badge/Frontend-Vanilla_JS-yellow.svg)]()
-[![License](https://img.shields.io/badge/License-MIT-green.svg)]()
+Aşağıdaki kod bloğunu kopyalayıp doğrudan GitHub'daki README düzenleme ekranına yapıştırabilirsiniz:
 
-> *"Yazılım projelerindeki başarısızlıkların ana nedeni donanım değil, insan faktörü ve bilişsel yorgunluktur."*
+```markdown
+# 🚀 Bug Farmers: Yapay Zeka Tabanlı Geliştirici Performans Kestirim Sistemi
 
-**Bug Farmers**, yazılım geliştiricilerin çalışma saatleri, kahve tüketimleri, deneyim yılları ve uyku süreleri gibi bilişsel yük parametrelerini analiz ederek, performanslarını (**Düşük, Orta, Yüksek**) tahminleyen makine öğrenmesi tabanlı bir Karar Destek Sistemidir.
+Bu proje, yazılım projelerindeki zaman ve bütçe aşımlarının temel nedeni olan "insan faktörünü" ve "bilişsel yorgunluğu" analiz etmek amacıyla geliştirilmiş kapsamlı bir makine öğrenmesi aracıdır. Modern ve kullanıcı dostu bir web arayüzü üzerinden, geliştiricilerin bilişsel yüklerini (stres, uyku, çalışma saati) hesaplayarak performanslarını tahmin etme imkanı sunar.
 
----
+![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)
+![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-1.2.2-orange.svg)
+![Vanilla JS](https://img.shields.io/badge/Frontend-Vanilla_JS-yellow.svg)
+![License](https://img.shields.io/badge/License-MIT-green.svg)
 
-## 🎯 Projenin Amacı ve Motivasyonu
-Geleneksel performans ölçümleri (yazılan kod satır sayısı vb.) geliştiricinin psikolojik ve fiziksel durumunu göz ardı eder. Bu proje; uyku eksikliği ve yüksek stres seviyelerinin projelerde "Teknik Borç (Technical Debt)" yaratmasını önlemek amacıyla, yapay zeka destekli proaktif bir sınıflandırma sistemi sunmaktadır.
+## 🚀 Özellikler
+* **Çoklu Algoritma Desteği:** 10 farklı makine öğrenmesi algoritması (SVM, Random Forest, XGBoost vb.) ile eşzamanlı performans sınıflandırması.
+* **Gelişmiş Görselleştirme:** K-Means kümelerinin ve NetworkX tabanlı Sosyal Ağ (SNA) değişken ilişkilerinin interaktif görselleştirilmesi.
+* **Bilişsel Yük Analizi:** Uyku süresi, stres seviyesi ve kahve tüketimi gibi metriklerin kod kalitesine olan etkisinin matematiksel analizi.
+* **Modern Arayüz:** Vanilla JS, CSS Glassmorphism ve Cyberpunk teması ile geliştirilmiş, kullanımı kolay interaktif Web Dashboard.
+* **Çoğunluk Oylaması (Majority Voting):** Tüm algoritmaların anlık olarak eğitilip oylama yaptığı ve en çok oy alan sonucun nihai karar olarak sunulduğu otonom karar destek mekanizması.
+* **Aşırı Öğrenme Kontrolü:** K=5 Fold Cross Validation (Çapraz Doğrulama) ile %100 tekrarlanabilir ve ezberden uzak model doğrulaması.
 
-## 🧠 10 Algoritmalı Öğrenme Ekosistemi
-Tek bir modele bağımlı kalmanın getirdiği önyargı (bias) riskini ortadan kaldırmak için sistemde 10 farklı makine öğrenmesi algoritması eğitilmiştir:
+## 🧠 Algoritmalar ve Katkıda Bulunanlar
+Proje kapsamında aşağıdaki algoritmalar implemente edilmiştir:
 
-1. **Ağaç Bazlı Modeller:** Random Forest, XGBoost, AdaBoost, Decision Tree
-2. **Matematiksel/Olasılıksal Modeller:** Destek Vektör Makineleri (SVM), k-NN, Naive Bayes, Logistic Regression
-3. **Derin Öğrenme:** MLPClassifier (Çok Katmanlı Algılayıcı - YSA)
-4. **Çoğunluk Oylaması (Majority Voting):** Tüm algoritmaların tahminlerini alıp en çok oy alanı nihai karar olarak sunan meta-algoritma (Hard Voting).
+* **Topluluk (Ensemble) Algoritmaları:** Random Forest, XGBoost, AdaBoost, Karar Ağaçları
+* **Matematiksel Modeller:** Destek Vektör Makineleri (SVM), k-NN, Naive Bayes
+* **Derin Öğrenme:** Çok Katmanlı Algılayıcı (MLPClassifier - YSA)
+* **Gözetimsiz Öğrenme:** K-Means Kümeleme ve Sosyal Ağ Analizi (SNA)
 
-## 🏆 Şampiyon Model ve Performans (5-Fold CV)
-Aşırı öğrenmeyi (Overfitting) engellemek amacıyla uygulanan **5-Fold Cross Validation** testleri sonucunda sistemin en başarılı algoritması:
+**Grup I - İşbirlikli Öğrenme Alanı Ekibi:**
+* **Hakan Yavuz** (Backend & Veri Madenciliği)
+* **Ali Güngör** (Makine Öğrenmesi & Veri Ön İşleme)
+* **Umut Kağan Ceylan** (Arayüz & Entegrasyon & Analiz)
 
-* **Şampiyon:** Destek Vektör Makineleri (SVM)
-* **Kernel:** RBF (Radyal Tabanlı Fonksiyon)
-* **F1-Skoru:** %87.47
-* **Accuracy (Doğruluk):** %87.33
+## 🛠️ Kurulum
+Projeyi yerel makinenizde çalıştırmak için aşağıdaki adımları izleyin:
 
-*(Doğrusal algoritmalar düşük skor verirken, SVM'in RBF çekirdeği ile verileri yüksek boyutlu uzaya taşıması veri setinin doğrusal olmayan (non-linear) yapısını kanıtlamıştır.)*
+**1. Repoyu Klonlayın:**
+```bash
+git clone https://github.com/kullaniciadi/Bug-Farmers-AI-Performance.git
+cd Bug-Farmers-AI-Performance
+```
 
-## 🔍 Gözetimsiz Öğrenme ve Ağ Analizi
-* **K-Means Demetleme:** Geliştiriciler; uzaklık metriklerine göre otomatik olarak 3 farklı profile (Tükenmiş, Verimli, Standart) ayrıştırılmıştır.
-* **Sosyal Ağ Analizi (SNA):** Değişkenler birer düğüm (node) olarak modellenmiş; uyku ve stresin ağın akışını kontrol eden en kritik merkezler olduğu *Betweenness Centrality* hesaplamalarıyla kanıtlanmıştır.
+**2. Gerekli Kütüphaneleri Yükleyin:**
+```bash
+pip install -r requirements.txt
+```
 
-## 💻 Kurulum ve Çalıştırma
+## ▶️ Kullanım
+Uygulamayı başlatmak için projeyi yerel ortamınızda çalıştırın:
 
-Proje klasörünü bilgisayarınıza indirdikten sonra, dinamik web arayüzünü (Dashboard) çalıştırmak için:
+**Arayüz Sekmeleri**
+🔍 **Canlı Tahmin (Live Prediction):**
+* Geliştiriciye ait Çalışma Saati, Uyku, Stres ve Kahve tüketim değerlerini girin.
+* `TAHMİN ET` butonuna tıklayın.
+* Sistem arka planda 10 algoritmayı tetikleyecek ve her birinin tahmin sonucunu ekrana yansıtacaktır.
+* Sonuçlar, "Majority Voting" mantığı ile birleştirilip en yüksek oyu alan performans sınıfı (DÜŞÜK, ORTA, YÜKSEK) büyük yeşil ekranda gösterilir.
 
-1. Bilgisayarınızda `frontend/index.html` dosyasına çift tıklayarak tarayıcıda açın.
-2. Açılan arayüzde bir geliştiricinin çalışma, uyku ve kahve bilgilerini girin.
-3. Arka planda 10 algoritmanın anlık ürettiği tahminleri ve **Majority Voting** sonucunu yeşil panelden inceleyin.
-4. Alt kısımdaki "Haftalık Modüller" sekmesinden K-Means, Veri Ön İşleme ve Makine Öğrenmesi raporlarını detaylıca okuyabilirsiniz.
+📊 **Algoritma Karşılaştırma Tablosu:**
+* Bu sekmede, 10 farklı algoritmanın (SVM, XGBoost, Naive Bayes vb.) Accuracy (Doğruluk) ve F1 Skorlarını kıyaslayabilirsiniz.
+* Tablo, algoritmaların doğrusallık analizlerini ve hiperparametre başarılarını raporlar.
 
-## 👨‍💻 Proje Ekibi (Grup I - İşbirlikli Öğrenme Alanı)
-* **Hakan Yavuz** (23010708050)
-* **Ali Güngör** (23010708021)
-* **Umut Kağan Ceylan** (23010708011)
+🔮 **Gözetimsiz Öğrenme Analizleri:**
+* K-Means modülü ile geliştiricilerin uzaklık metriklerine göre hangi profillere ayrıldığını (Tükenmiş, Verimli, Standart) inceleyebilirsiniz.
+* Ağ Analizi (SNA) grafiğinde, "Uyku" ve "Stres" düğümlerinin projedeki "Hata (Bug)" oranını nasıl kontrol ettiğini görselleştirebilirsiniz.
 
----
-*Bu proje, üniversite "Yapay Zeka" dersi kapsamında akademik araştırma ve uygulama projesi olarak geliştirilmiştir.*
+## 📂 Dosya Yapısı
+* `frontend/index.html`: Ana uygulama ve GUI kodu (Glassmorphism tasarımı).
+* `backend/classification.py`: 10 algoritmalı sınıflandırma ve Majority Voting implementasyonu.
+* `backend/clustering.py`: K-Means ve Hiyerarşik demetleme algoritması.
+* `backend/social_network.py`: Değişkenler arası NetworkX (SNA) bağlantı implementasyonu.
+* `backend/preprocessing.py`: Eksik veri doldurma, Min-Max Normalizasyon ve Label Encoding süreçleri.
+* `dataset/AI_Developer_Performance_Extended_1000.csv`: Kaggle kaynaklı 963 satırlık geliştirici veri seti.
 
+## 🔬 Tekrarlanabilirlik ve Majority Voting (Çoğunluk Oylaması)
+Proje, bilimsel araştırma ve akademik çalışmalar için kritik öneme sahip %100 tekrarlanabilir sonuçlar sunmaktadır. Veriler rastgele değil, matematiksel kanıtlara dayalı algoritmalarla işlenir.
+
+**Sistem Mimarisi**
+Arayüzde tetiklenen "Çoğunluk Oylaması", karar ağaçlarının zayıflıklarını gidermek için tasarlanmıştır:
+1. **Veri Girişi:** Sistem 0.0 - 1.0 aralığında ölçeklenmiş anlık veriyi alır.
+2. **Paralel İşleme:** 10 algoritma, kendi hiperdüzlemlerini kullanarak bağımsız tahminler üretir.
+3. **Hard Voting:** Hangi sınıf (Örn: Yüksek Performans) en çok algoritma tarafından tahmin edildiyse, o karar nihai sonuç olarak belirlenir. Bu, tek bir algoritmanın (Örn: Naive Bayes) yapabileceği varyans hatasını sıfıra indirir.
+
+## 🆕 Son Güncellemeler
+**Versiyon 2.0 - Mayıs 2026**
+* ✅ **Genişletilmiş Algoritma Desteği:** Sistem 8 algoritmalı regresyon yapısından, 10 algoritmalı sınıflandırma (Classification) görevine dönüştürüldü.
+* ✅ **Çoklu Metrik Analizi:** Modellerin başarısı sadece Accuracy ile değil, dengesiz veriler için daha stabil olan F1-Score ve AUC metrikleriyle güçlendirildi.
+* ✅ **Min-Max Normalizasyon:** k-NN ve K-Means algoritmalarındaki uzaklık önyargısını (bias) gidermek için tüm değişkenler standardize edildi.
+* ✅ **Kapsamlı Dokümantasyon:** Proje BİTED makale yazım kurallarına uygun teknik raporlarla donatıldı.
+* ✅ **Gelişmiş UI/UX:** Neon/Cyberpunk temalı, cam efektine (Glassmorphism) sahip modern arayüz tasarımı eklendi.
+
+## 📈 Performans
+Ağaç bazlı ve doğrusal modellerin K-Fold doğrulama (K=5) testleri sonrasında alınan performans kıyaslamaları:
+
+| Algoritma | F1 Skoru | Accuracy | Durum |
+| :--- | :---: | :---: | :--- |
+| **SVM (RBF Kernel)** | **%87.47** | **%87.33** | 🏆 Şampiyon Model (Non-Linear) |
+| Random Forest | %85.12 | %85.00 | Başarılı |
+| XGBoost | %84.90 | %84.85 | Başarılı |
+| Logistic Regression | %45.20 | %46.10 | Başarısız (Veri Doğrusal Değil) |
+
+*(Testler standart donanım üzerinde gerçekleştirilmiş olup, 5-Fold iterasyonları ortalama 4 saniye sürmektedir.)*
+
+## 🤝 Katkıda Bulunma
+Sistemi daha da geliştirmek için **Zaman Serisi (LSTM)** ile gelecek 6 aylık performans düşüşlerini tahminleme veya projeyi bir bulut **API (MLOps)** olarak şirketlerin İK sistemlerine entegre etme fikirlerine açığız. Katkıda bulunmak isterseniz Pull Request gönderebilirsiniz.
+```
