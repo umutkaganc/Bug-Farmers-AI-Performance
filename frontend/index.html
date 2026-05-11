@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Developer Performance — Veri Madenciliği Analizi</title>
+  <meta name="description" content="AI Developer Performance veri seti üzerinde veri madenciliği: sınıflandırma, demetleme, sosyal ağ analizi.">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<div class="app-layout">
+
+  <!-- ===================== SIDEBAR ===================== -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <h1>🧠 Veri Madenciliği<br>Analiz Platformu</h1>
+      <p>Veri Madenciliği • 2026</p>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-section-title">Genel Bakış</div>
+      <button class="nav-item active" onclick="showPage('overview')" id="nav-overview">
+        <span class="nav-icon">🏠</span> Dashboard
+      </button>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-section-title">Hafta 2-3 — Veri</div>
+      <button class="nav-item" onclick="showPage('preprocessing')" id="nav-preprocessing">
+        <span class="nav-icon">🔧</span> Veri Önişleme
+      </button>
+      <button class="nav-item" onclick="showPage('stats')" id="nav-stats">
+        <span class="nav-icon">📊</span> İstatistikler
+      </button>
+      <button class="nav-item" onclick="showPage('correlation')" id="nav-correlation">
+        <span class="nav-icon">🔗</span> Korelasyon
+      </button>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-section-title">Hafta 4-5 — Sınıflandırma</div>
+      <button class="nav-item" onclick="showPage('classification')" id="nav-classification">
+        <span class="nav-icon">🌳</span> Sınıflandırma
+        <span class="nav-badge">10</span>
+      </button>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-section-title">Hafta 6-7 — Demetleme</div>
+      <button class="nav-item" onclick="showPage('clustering')" id="nav-clustering">
+        <span class="nav-icon">🫧</span> Demetleme
+        <span class="nav-badge">3</span>
+      </button>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-section-title">Hafta 9 — Sosyal Ağ</div>
+      <button class="nav-item" onclick="showPage('network')" id="nav-network">
+        <span class="nav-icon">🕸️</span> Sosyal Ağ Analizi
+      </button>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-section-title">🎯 Uygulama</div>
+      <button class="nav-item" onclick="showPage('summary')" id="nav-summary">
+        <span class="nav-icon">🏆</span> Analiz Özeti
+        <span class="nav-badge" style="background:var(--orange)">★</span>
+      </button>
+      <button class="nav-item" onclick="showPage('predict')" id="nav-predict">
+        <span class="nav-icon">🔮</span> Canlı Tahmin
+        <span class="nav-badge" style="background:var(--green)">YENİ</span>
+      </button>
+      <button class="nav-item" onclick="showPage('tablo')" id="nav-tablo">
+        <span class="nav-icon">📄</span> Veri Tablosu
+      </button>
+    </div>
+
+    <div class="sidebar-footer">
+      <b>Veri Seti:</b> AI Developer Performance<br>
+      1000 kayıt • 13 özellik • 3 sınıf<br><br>
+      <b>Hedef:</b> Task_Success_Rate<br>
+      Düşük / Orta / Yüksek
+    </div>
+  </aside>
+
+  <!-- ===================== MAIN ===================== -->
+  <main class="main-content">
+
+    <!-- TOP BAR -->
+    <div class="topbar">
+      <div>
+        <div class="topbar-title" id="topbar-title">📊 Dashboard</div>
+        <div class="topbar-subtitle" id="topbar-subtitle">AI Developer Performance Analizi</div>
+      </div>
+      <div style="display:flex;gap:10px;align-items:center;">
+        <button onclick="toggleTheme()" id="theme-toggle-btn" class="btn" style="padding:8px 14px;font-size:14px;" title="Tema Değiştir">🌙</button>
+        <button onclick="exportPage()" class="btn" style="padding:8px 16px;font-size:12px;">📥 PNG İndir</button>
+        <button onclick="window.print()" class="btn" style="padding:8px 16px;font-size:12px;">🖨️ PDF / Yazdır</button>
+        <div class="status-badge">
+          <span class="status-dot"></span>
+          <span id="server-status">Bağlanıyor...</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- =================== PAGE: OVERVIEW =================== -->
+    <div class="page active fade-in" id="page-overview">
+      <div class="section-header">
+        <h2>🏠 Genel Bakış <span class="hafta-tag">Hafta 1-9</span></h2>
+        <p>AI Geliştirici Performans Veri Seti üzerinde uygulanan tüm veri madenciliği analizleri.</p>
+      </div>
+
+      <div class="stats-grid" id="overview-stats">
+        <div class="stat-card indigo"><div class="stat-icon">📁</div><div class="stat-value" id="stat-rows">—</div><div class="stat-label">Toplam Kayıt</div></div>
+        <div class="stat-card green"><div class="stat-icon">📐</div><div class="stat-value" id="stat-cols">—</div><div class="stat-label">Özellik Sayısı</div></div>
+        <div class="stat-card orange"><div class="stat-icon">❌</div><div class="stat-value" id="stat-missing">0</div><div class="stat-label">Eksik Veri</div></div>
+        <div class="stat-card cyan"><div class="stat-icon">🎯</div><div class="stat-value" id="stat-classes">3</div><div class="stat-label">Sınıf Sayısı</div></div>
+      </div>
+
+      <!-- Hedef Değişken Açıklama Kutusu -->
+      <div style="background:linear-gradient(135deg,rgba(99,102,241,0.12),rgba(6,182,212,0.08));border:1px solid rgba(99,102,241,0.3);border-radius:var(--radius);padding:20px;margin-bottom:24px;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+          <span style="font-size:22px;">🎯</span>
+          <div>
+            <div style="font-size:15px;font-weight:700;color:var(--accent-light);">Hedef Değişken: <code style="background:rgba(99,102,241,0.2);padding:2px 8px;border-radius:4px;font-size:13px;">Task_Success_Rate</code></div>
+            <div style="font-size:12px;color:var(--text-muted);margin-top:2px;">Bir yazılım geliştiricisinin görevleri başarıyla tamamlama yüzdesi (30–100)</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
+          <div style="background:rgba(239,68,68,0.12);border:1px solid rgba(239,68,68,0.35);border-radius:10px;padding:14px;text-align:center;">
+            <div style="font-size:24px;margin-bottom:6px;">🔴</div>
+            <div style="font-size:18px;font-weight:800;color:#ef4444;">Düşük</div>
+            <div style="font-size:13px;color:var(--text-secondary);margin:4px 0;font-family:monospace;font-weight:600;">30 – 50</div>
+            <div style="font-size:11px;color:var(--text-muted);">Görevlerin %30-50'sini başarıyla tamamlıyor</div>
+          </div>
+          <div style="background:rgba(245,158,11,0.12);border:1px solid rgba(245,158,11,0.35);border-radius:10px;padding:14px;text-align:center;">
+            <div style="font-size:24px;margin-bottom:6px;">🟡</div>
+            <div style="font-size:18px;font-weight:800;color:#f59e0b;">Orta</div>
+            <div style="font-size:13px;color:var(--text-secondary);margin:4px 0;font-family:monospace;font-weight:600;">51 – 75</div>
+            <div style="font-size:11px;color:var(--text-muted);">Görevlerin %51-75'ini başarıyla tamamlıyor</div>
+          </div>
+          <div style="background:rgba(16,185,129,0.12);border:1px solid rgba(16,185,129,0.35);border-radius:10px;padding:14px;text-align:center;">
+            <div style="font-size:24px;margin-bottom:6px;">🟢</div>
+            <div style="font-size:18px;font-weight:800;color:#10b981;">Yüksek</div>
+            <div style="font-size:13px;color:var(--text-secondary);margin:4px 0;font-family:monospace;font-weight:600;">76 – 100</div>
+            <div style="font-size:11px;color:var(--text-muted);">Görevlerin %76-100'ünü başarıyla tamamlıyor</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">🎯 Sınıf Dağılımı (Task Success Rate)</div>
+          <div class="card-subtitle">Performans düzeylerine göre dağılım</div>
+          <div class="chart-wrap"><canvas id="classDistChart" height="220"></canvas></div>
+        </div>
+        <div class="card">
+          <div class="card-title">📌 Proje Kapsamı</div>
+          <div class="card-subtitle">Ders konularına göre uygulanan yöntemler</div>
+          <div style="margin-top:12px;">
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <div><span class="badge badge-indigo">Hafta 2-3</span> <span style="font-size:13px;color:var(--text-secondary);margin-left:8px;">Veri Tanıma ve Önişleme</span></div>
+              <div><span class="badge badge-cyan">Hafta 4</span> <span style="font-size:13px;color:var(--text-secondary);margin-left:8px;">Karar Ağacı (ID3/Entropi), Naive Bayes, YSA</span></div>
+              <div><span class="badge badge-green">Hafta 5</span> <span style="font-size:13px;color:var(--text-secondary);margin-left:8px;">kNN, SVM, Model Değerlendirme, ROC</span></div>
+              <div><span class="badge badge-orange">Hafta 6</span> <span style="font-size:13px;color:var(--text-secondary);margin-left:8px;">K-Means (Elbow), Hiyerarşik (AGNES), DBSCAN</span></div>
+              <div><span class="badge badge-indigo">Hafta 7</span> <span style="font-size:13px;color:var(--text-secondary);margin-left:8px;">Silhouette, SSE Değerlendirme</span></div>
+              <div><span class="badge badge-green">Hafta 9</span> <span style="font-size:13px;color:var(--text-secondary);margin-left:8px;">Sosyal Ağ, Merkezilik, Topluluk Belirleme</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">📋 Veri Seti Özellikleri</div>
+        <div class="card-subtitle">AI_Developer_Performance_Extended_1000</div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Özellik</th><th>Tür</th><th>Açıklama</th><th>Aralık</th></tr></thead>
+            <tbody>
+              <tr><td>Hours_Coding</td><td><span class="badge badge-indigo">int</span></td><td>Günlük kodlama saati</td><td>1–11</td></tr>
+              <tr><td>Lines_of_Code</td><td><span class="badge badge-indigo">int</span></td><td>Yazılan kod satırı</td><td>26–993</td></tr>
+              <tr><td>Bugs_Found</td><td><span class="badge badge-indigo">int</span></td><td>Bulunan hata sayısı</td><td>0–19</td></tr>
+              <tr><td>Bugs_Fixed</td><td><span class="badge badge-indigo">int</span></td><td>Düzeltilen hata sayısı</td><td>0–19</td></tr>
+              <tr><td>AI_Usage_Hours</td><td><span class="badge badge-indigo">int</span></td><td>AI araç kullanım süresi</td><td>0–6</td></tr>
+              <tr><td>Sleep_Hours</td><td><span class="badge badge-cyan">float</span></td><td>Günlük uyku saati</td><td>4.0–9.0</td></tr>
+              <tr><td>Cognitive_Load</td><td><span class="badge badge-indigo">int</span></td><td>Bilişsel yük skoru</td><td>20–94</td></tr>
+              <tr><td><b>Task_Success_Rate</b></td><td><span class="badge badge-green">HEDEF</span></td><td>Görev başarı oranı → 3 sınıf</td><td>30–100</td></tr>
+              <tr><td>Coffee_Intake</td><td><span class="badge badge-indigo">int</span></td><td>Kahve tüketimi</td><td>0–7</td></tr>
+              <tr><td>Stress_Level</td><td><span class="badge badge-indigo">int</span></td><td>Stres seviyesi</td><td>30–100</td></tr>
+              <tr><td>Task_Duration_Hours</td><td><span class="badge badge-cyan">float</span></td><td>Görev tamamlama süresi</td><td>0.5–27.5</td></tr>
+              <tr><td>Commits</td><td><span class="badge badge-indigo">int</span></td><td>Git commit sayısı</td><td>1–50</td></tr>
+              <tr><td>Errors</td><td><span class="badge badge-indigo">int</span></td><td>Hata (error) sayısı</td><td>0–9</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- =================== PAGE: PREPROCESSING =================== -->
+    <div class="page fade-in" id="page-preprocessing">
+      <div class="section-header">
+        <h2>🔧 Veri Önişleme <span class="hafta-tag">Hafta 3</span></h2>
+        <p>Veri temizleme, aykırı değer tespiti, normalizasyon yöntemleri. (Veri madenciliği sürecinin ~%70'ini oluşturur)</p>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card green"><div class="stat-icon">✅</div><div class="stat-value">0</div><div class="stat-label">Eksik Değer</div></div>
+        <div class="stat-card indigo"><div class="stat-icon">📏</div><div class="stat-value">12</div><div class="stat-label">Sayısal Özellik</div></div>
+        <div class="stat-card orange"><div class="stat-icon">⚠️</div><div class="stat-value" id="total-outliers">—</div><div class="stat-label">Toplam Aykırı Değer</div></div>
+        <div class="stat-card cyan"><div class="stat-icon">🔄</div><div class="stat-value">2</div><div class="stat-label">Normalizasyon Yöntemi</div></div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">⚠️ Aykırı Değer Analizi (IQR Yöntemi)</div>
+          <div class="card-subtitle">Q1 − 1.5×IQR &lt; x &lt; Q3 + 1.5×IQR dışındaki değerler</div>
+          <div id="outlier-content"><div class="loader"><div class="spinner"></div>Hesaplanıyor...</div></div>
+        </div>
+        <div class="card">
+          <div class="card-title">📊 Histogram Görselleştirme</div>
+          <div class="card-subtitle">Özellik seçin:</div>
+          <select id="hist-col-select" onchange="loadHistogram()" style="width:100%;margin-bottom:12px;">
+            <option value="Hours_Coding">Hours_Coding</option>
+            <option value="Lines_of_Code">Lines_of_Code</option>
+            <option value="Bugs_Found">Bugs_Found</option>
+            <option value="Bugs_Fixed">Bugs_Fixed</option>
+            <option value="AI_Usage_Hours">AI_Usage_Hours</option>
+            <option value="Sleep_Hours">Sleep_Hours</option>
+            <option value="Cognitive_Load">Cognitive_Load</option>
+            <option value="Task_Success_Rate">Task_Success_Rate</option>
+            <option value="Coffee_Intake">Coffee_Intake</option>
+            <option value="Stress_Level">Stress_Level</option>
+            <option value="Task_Duration_Hours">Task_Duration_Hours</option>
+            <option value="Commits">Commits</option>
+            <option value="Errors">Errors</option>
+          </select>
+          <div class="chart-wrap"><canvas id="histogramChart" height="200"></canvas></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">🔄 Normalizasyon Karşılaştırması</div>
+        <div class="card-subtitle">İlk 5 kaydın orijinal ve normalize edilmiş değerleri</div>
+        <div class="btn-row">
+          <button class="btn active" id="norm-minmax-btn" onclick="loadNormalization('minmax')">📐 Min-Max [0,1]</button>
+          <button class="btn" id="norm-zscore-btn" onclick="loadNormalization('zscore')">📈 Z-Score (µ=0, σ=1)</button>
+        </div>
+        <div id="norm-content"><div class="loader"><div class="spinner"></div>Yükleniyor...</div></div>
+      </div>
+    </div>
+
+    <!-- =================== PAGE: STATS =================== -->
+    <div class="page fade-in" id="page-stats">
+      <div class="section-header">
+        <h2>📊 İstatistiksel Analiz <span class="hafta-tag">Hafta 3</span></h2>
+        <p>Merkezi eğilim (ortalama, medyan, mod) ve dağılım ölçütleri (std, varyans, IQR).</p>
+      </div>
+      <div class="card">
+        <div class="card-title">📋 Tanımlayıcı İstatistikler — Tüm Özellikler</div>
+        <div class="card-subtitle">Her özellik için tam istatistik tablosu</div>
+        <div id="stats-table-content"><div class="loader"><div class="spinner"></div>Hesaplanıyor...</div></div>
+      </div>
+      <div class="grid-2" style="margin-top:20px;">
+        <div class="card">
+          <div class="card-title">📦 Kutu Grafiği (Box Plot) Seçimi</div>
+          <div class="card-subtitle">Özellik seçin:</div>
+          <select id="box-col-select" onchange="loadBoxPlot()" style="width:100%;margin-bottom:12px;">
+            <option value="Hours_Coding">Hours_Coding</option>
+            <option value="Stress_Level">Stress_Level</option>
+            <option value="Lines_of_Code">Lines_of_Code</option>
+            <option value="Cognitive_Load">Cognitive_Load</option>
+            <option value="Task_Duration_Hours">Task_Duration_Hours</option>
+          </select>
+          <div id="boxplot-info" style="font-size:13px;"></div>
+        </div>
+        <div class="card">
+          <div class="card-title">📈 Ortalama Değer Karşılaştırması</div>
+          <div class="card-subtitle">Normalize edilmiş ortalamalar</div>
+          <div class="chart-wrap"><canvas id="meanBarChart" height="220"></canvas></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- =================== PAGE: CORRELATION =================== -->
+    <div class="page fade-in" id="page-correlation">
+      <div class="section-header">
+        <h2>🔗 Korelasyon Analizi <span class="hafta-tag">Hafta 3</span></h2>
+        <p>Özellikler arası doğrusal ilişkiler. |r| > 0.5 güçlü korelasyon sayılır.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">🗺️ Korelasyon Matrisi</div>
+        <div class="card-subtitle">Pearson korelasyon katsayıları (−1 ile +1 arası)</div>
+        <div id="corr-content"><div class="loader"><div class="spinner"></div>Yükleniyor...</div></div>
+      </div>
+      <div class="card" style="margin-top:20px;">
+        <div class="card-title">🔝 En Yüksek Korelasyonlar</div>
+        <div class="card-subtitle">Mutlak değeri en büyük özellik çiftleri</div>
+        <div id="top-corr-content"><div class="loader"><div class="spinner"></div>Hesaplanıyor...</div></div>
+      </div>
+    </div>
+
+    <!-- =================== PAGE: CLASSIFICATION =================== -->
+    <div class="page fade-in" id="page-classification">
+      <div class="section-header">
+        <h2>🌳 Sınıflandırma <span class="hafta-tag">Hafta 4-5</span></h2>
+        <p>10 sınıflandırma algoritması • %70/%30 Holdout + 5-Fold Cross Validation • Hedef: Task_Success_Rate (Düşük/Orta/Yüksek)</p>
+      </div>
+
+      <div class="algo-cards" id="algo-cards-container">
+        <div class="loader"><div class="spinner"></div>Algoritmalar yükleniyor...</div>
+      </div>
+
+      <div id="algo-detail-content"><div class="loader"><div class="spinner"></div>Analiz yükleniyor...</div></div>
+
+      <div class="card" style="margin-top:20px;">
+        <div class="card-title">⭐ Özellik Önemi (Feature Importance)</div>
+        <div class="card-subtitle">Hangi özellik performansı en çok etkiliyor? — Karar Ağacı ve Random Forest karşılaştırması</div>
+        <div id="feature-importance-info" style="margin:12px 0;"></div>
+        <div class="chart-wrap"><canvas id="featureImportanceChart" height="280"></canvas></div>
+      </div>
+
+      <div class="card" style="margin-top:20px;">
+        <div class="card-title">🏆 Algoritma Karşılaştırma Tablosu</div>
+        <div class="card-subtitle">Tüm algoritmaların F1 skoruna göre sıralaması</div>
+        <div id="comparison-table-content"><div class="loader"><div class="spinner"></div>Yükleniyor...</div></div>
+      </div>
+
+      <div class="card" style="margin-top:20px;">
+        <div class="card-title">🌳 Karar Ağacı Kuralları (Derinlik: 4)</div>
+        <div class="card-subtitle">ID3 algoritması ile oluşturulan karar ağacı kuralları (entropi kriteri)</div>
+        <div id="tree-rules-content"><div class="loader"><div class="spinner"></div>Yükleniyor...</div></div>
+      </div>
+    </div>
+
+    <!-- =================== PAGE: CLUSTERING =================== -->
+    <div class="page fade-in" id="page-clustering">
+      <div class="section-header">
+        <h2>🫧 Demetleme <span class="hafta-tag">Hafta 6-7</span></h2>
+        <p>K-Means (Elbow Method) • Hiyerarşik AGNES • DBSCAN • Silhouette değerlendirmesi</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">📈 Elbow Method — Optimal K</div>
+          <div class="card-subtitle">SSE (Sum of Squared Error) ve Silhouette skoru</div>
+          <div id="elbow-content"><div class="loader"><div class="spinner"></div>Hesaplanıyor...</div></div>
+        </div>
+        <div class="card">
+          <div class="card-title">🫧 K-Means Küme Analizi</div>
+          <div class="card-subtitle">Optimal K ile küme boyutları ve Silhouette skoru</div>
+          <div id="kmeans-content"><div class="loader"><div class="spinner"></div>Hesaplanıyor...</div></div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom:20px;">
+        <div class="card-title">🗺️ K-Means PCA Projeksiyon (2D)</div>
+        <div class="card-subtitle">12 boyutlu veri PCA ile 2 boyuta indirgendi</div>
+        <div class="chart-wrap"><canvas id="kmeansScatterChart" height="300"></canvas></div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">🌲 Hiyerarşik Demetleme (AGNES)</div>
+          <div class="card-subtitle">Ward linkage • Silhouette skoru ve küme boyutları</div>
+          <div id="hierarchical-content"><div class="loader"><div class="spinner"></div>Hesaplanıyor...</div></div>
+        </div>
+        <div class="card">
+          <div class="card-title">🔵 DBSCAN</div>
+          <div class="card-subtitle">Yoğunluk tabanlı demetleme • eps=0.35, minPts=5</div>
+          <div id="dbscan-content"><div class="loader"><div class="spinner"></div>Hesaplanıyor...</div></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">📊 Demetleme Karşılaştırması</div>
+        <div class="card-subtitle">Silhouette skor ve küme sayısına göre</div>
+        <div class="chart-wrap" style="margin-top:12px;"><canvas id="clusterCompareChart" height="180"></canvas></div>
+      </div>
+    </div>
+
+    <!-- =================== PAGE: NETWORK =================== -->
+    <div class="page fade-in" id="page-network">
+      <div class="section-header">
+        <h2>🕸️ Sosyal Ağ Analizi <span class="hafta-tag">Hafta 9</span></h2>
+        <p>Korelasyon matrisinden benzerlik çizgesi oluşturuldu. Merkezilik ölçütleri ve topluluk tespiti uygulandı.</p>
+      </div>
+
+      <div class="stats-grid" id="network-stats">
+        <div class="stat-card indigo"><div class="stat-icon">🔵</div><div class="stat-value" id="net-nodes">—</div><div class="stat-label">Düğüm Sayısı</div></div>
+        <div class="stat-card green"><div class="stat-icon">🔗</div><div class="stat-value" id="net-edges">—</div><div class="stat-label">Kenar Sayısı</div></div>
+        <div class="stat-card orange"><div class="stat-icon">🌐</div><div class="stat-value" id="net-density">—</div><div class="stat-label">Yoğunluk</div></div>
+        <div class="stat-card cyan"><div class="stat-icon">👥</div><div class="stat-value" id="net-communities">—</div><div class="stat-label">Topluluk Sayısı</div></div>
+      </div>
+
+      <div class="card" style="margin-bottom:20px;">
+        <div class="card-title">🕸️ Benzerlik Ağı Grafiği</div>
+        <div class="card-subtitle">Korelasyon eşiği: |r| ≥ 0.4 &nbsp;|&nbsp; Düğüm boyutu = derece merkeziliği</div>
+        <canvas id="networkCanvas"></canvas>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">📊 Merkezilik Ölçütleri</div>
+          <div class="card-subtitle">Degree, Closeness, Betweenness Centrality</div>
+          <div id="centrality-content"><div class="loader"><div class="spinner"></div>Yükleniyor...</div></div>
+        </div>
+        <div class="card">
+          <div class="card-title">👥 Tespit Edilen Topluluklar</div>
+          <div class="card-subtitle">Greedy Modularity algoritması (Girvan-Newman alternatifi)</div>
+          <div id="communities-content"><div class="loader"><div class="spinner"></div>Yükleniyor...</div></div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:0;">
+        <div class="card-title">📏 En Merkezi Özellikler</div>
+        <div class="card-subtitle">Her merkezilik ölçütüne göre sıralama</div>
+        <div class="chart-wrap"><canvas id="centralityChart" height="200"></canvas></div>
+      </div>
+    </div>
+
+    <!-- =================== PAGE: PREDICT =================== -->
+    <div class="page fade-in" id="page-predict">
+      <div class="section-header">
+        <h2>🔮 Canlı Performans Tahmini <span class="hafta-tag">10 Algoritma</span></h2>
+        <p>Bir yazılım geliştiricisinin özelliklerini girin — <b>10 algoritma</b> oy kullanarak performans sınıfını tahmin eder.</p>
+      </div>
+
+      <!-- Sınıf Açıklama Bandı -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:24px;">
+        <div style="background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);border-radius:10px;padding:12px;display:flex;align-items:center;gap:10px;">
+          <span style="font-size:28px;">🔴</span>
+          <div>
+            <div style="font-size:14px;font-weight:700;color:#ef4444;">Düşük Performans</div>
+            <div style="font-size:12px;color:var(--text-muted);">Task_Success_Rate: <b style="color:#ef4444;font-family:monospace;">30 – 50</b></div>
+            <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">Görevlerin %30-50'sini tamamlıyor</div>
+          </div>
+        </div>
+        <div style="background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.3);border-radius:10px;padding:12px;display:flex;align-items:center;gap:10px;">
+          <span style="font-size:28px;">🟡</span>
+          <div>
+            <div style="font-size:14px;font-weight:700;color:#f59e0b;">Orta Performans</div>
+            <div style="font-size:12px;color:var(--text-muted);">Task_Success_Rate: <b style="color:#f59e0b;font-family:monospace;">51 – 75</b></div>
+            <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">Görevlerin %51-75'ini tamamlıyor</div>
+          </div>
+        </div>
+        <div style="background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);border-radius:10px;padding:12px;display:flex;align-items:center;gap:10px;">
+          <span style="font-size:28px;">🟢</span>
+          <div>
+            <div style="font-size:14px;font-weight:700;color:#10b981;">Yüksek Performans</div>
+            <div style="font-size:12px;color:var(--text-muted);">Task_Success_Rate: <b style="color:#10b981;font-family:monospace;">76 – 100</b></div>
+            <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">Görevlerin %76-100'ünü tamamlıyor</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <!-- SOL: FORM -->
+        <div class="card" style="position:sticky;top:80px;align-self:start;">
+          <div class="card-title">⚙️ Geliştirici Özellikleri</div>
+          <div class="card-subtitle">Slider ile değerleri ayarlayın, otomatik hesaplanır</div>
+
+          <div id="predict-form-inputs" style="display:flex;flex-direction:column;gap:14px;margin-top:8px;">
+            <div class="loader"><div class="spinner"></div>Form yükleniyor...</div>
+          </div>
+
+          <div style="margin-top:20px;display:flex;gap:10px;">
+            <button class="btn btn-primary" onclick="runPrediction()" id="predict-btn" style="flex:1;justify-content:center;padding:12px;">
+              🔮 Tahmin Et
+            </button>
+            <button class="btn" onclick="resetToMean()" title="Ortalama değerlere sıfırla">↺ Sıfırla</button>
+          </div>
+        </div>
+
+        <!-- SAĞ: SONUÇLAR -->
+        <div>
+          <div id="predict-result-area">
+            <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:40px;text-align:center;color:var(--text-muted);">
+              <div style="font-size:48px;margin-bottom:12px;">🔮</div>
+              <div style="font-size:15px;">Değerleri girin ve <b>Tahmin Et</b> butonuna basın</div>
+              <div style="font-size:12px;margin-top:8px;">10 algoritma oylayarak en olası performans sınıfını belirleyecek</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- =================== PAGE: SUMMARY =================== -->
+    <div class="page fade-in" id="page-summary">
+      <div class="section-header">
+        <h2>🏆 Analiz Özeti</h2>
+        <p>Tüm veri madenciliği analizlerinin en önemli bulgularının tek sayfada özeti.</p>
+      </div>
+
+      <div class="stats-grid" id="summary-stats">
+        <div class="stat-card indigo"><div class="stat-icon">🤖</div><div class="stat-value" id="sum-best-acc">—</div><div class="stat-label" id="sum-best-algo">En İyi Algoritma</div></div>
+        <div class="stat-card green"><div class="stat-icon">⭐</div><div class="stat-value" id="sum-top-pct">—</div><div class="stat-label" id="sum-top-feat">En Önemli Özellik</div></div>
+        <div class="stat-card orange"><div class="stat-icon">📊</div><div class="stat-value" id="sum-f1">—</div><div class="stat-label">En İyi F1 Skoru</div></div>
+        <div class="stat-card cyan"><div class="stat-icon">🔄</div><div class="stat-value" id="sum-cv">—</div><div class="stat-label">Cross-Validation Ortalaması</div></div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">🏅 Algoritma Sıralaması</div>
+          <div class="card-subtitle">F1 skoruna göre en iyiden en kötüye</div>
+          <div id="summary-ranking"></div>
+        </div>
+        <div class="card">
+          <div class="card-title">📋 Proje Bulguları</div>
+          <div class="card-subtitle">Otomatik oluşturulan analiz raporu</div>
+          <div id="summary-findings" style="margin-top:12px;line-height:1.8;font-size:13px;color:var(--text-secondary);"></div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:0;">
+        <div class="card-title">📊 Algoritma Karşılaştırma Grafiği</div>
+        <div class="card-subtitle">Tüm metriklerin karşılaştırması</div>
+        <div class="chart-wrap"><canvas id="summaryBarChart" height="200"></canvas></div>
+      </div>
+    </div>
+
+    <!-- =================== PAGE: TABLO =================== -->
+    <div class="page fade-in" id="page-tablo">
+      <div class="section-header">
+        <h2>📄 Veri Tablosu</h2>
+        <p>Ham veri seti — filtreleme ve sayfalama destekli. 1000 kayıt, 13 özellik.</p>
+      </div>
+
+      <div class="card" style="margin-bottom:20px;">
+        <div class="card-title">🔍 Filtrele</div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end;margin-top:8px;">
+          <div>
+            <label>Sütun</label><br>
+            <select id="filter-col" onchange="updateFilterRange()" style="margin-top:4px;">
+              <option value="">— Tümü —</option>
+              <option>Hours_Coding</option><option>Lines_of_Code</option>
+              <option>Bugs_Found</option><option>Bugs_Fixed</option>
+              <option>AI_Usage_Hours</option><option>Sleep_Hours</option>
+              <option>Cognitive_Load</option><option>Task_Success_Rate</option>
+              <option>Coffee_Intake</option><option>Stress_Level</option>
+              <option>Task_Duration_Hours</option><option>Commits</option><option>Errors</option>
+            </select>
+          </div>
+          <div>
+            <label>Min</label><br>
+            <input type="number" id="filter-min" placeholder="Min" style="width:80px;padding:8px;margin-top:4px;background:var(--bg-primary);border:1px solid var(--border);color:var(--text-primary);border-radius:8px;">
+          </div>
+          <div>
+            <label>Max</label><br>
+            <input type="number" id="filter-max" placeholder="Max" style="width:80px;padding:8px;margin-top:4px;background:var(--bg-primary);border:1px solid var(--border);color:var(--text-primary);border-radius:8px;">
+          </div>
+          <button class="btn btn-primary" onclick="loadTablo(1)">🔍 Filtrele</button>
+          <button class="btn" onclick="document.getElementById('filter-col').value='';document.getElementById('filter-min').value='';document.getElementById('filter-max').value='';loadTablo(1)">✕ Temizle</button>
+          <span id="tablo-total" style="font-size:12px;color:var(--text-muted);align-self:center;"></span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div id="tablo-content"><div class="loader"><div class="spinner"></div>Yükleniyor...</div></div>
+        <div id="tablo-pagination" style="display:flex;gap:8px;justify-content:center;margin-top:16px;flex-wrap:wrap;"></div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

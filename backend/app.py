@@ -21,7 +21,8 @@ from classification import run_all_algorithms, run_single_algorithm, get_decisio
 from clustering import run_all_clustering
 from social_network import run_full_analysis
 
-app = Flask(__name__, static_folder='../frontend', static_url_path='')
+_FRONTEND = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'frontend')
+app = Flask(__name__, static_folder=_FRONTEND, static_url_path='')
 
 # Veri setini sunucu baslarken yukle
 print("[*] Veri seti yukleniyor...")
@@ -42,7 +43,7 @@ def cached(key, fn):
 # ===================== STATIK DOSYALAR =====================
 @app.route('/')
 def index():
-    return send_from_directory('../frontend', 'index.html')
+    return send_from_directory(_FRONTEND, 'index.html')
 
 
 # ===================== VERI ON ISLEME =====================

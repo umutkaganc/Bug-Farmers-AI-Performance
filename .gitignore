@@ -1,5 +1,7 @@
-# İstenmeyen klasörler
+# İstenmeyen klasörler ve dosyalar
 /pdf/
+*.pdf
+*.txt
 /sunum/
 /yeni dokuman/
 
