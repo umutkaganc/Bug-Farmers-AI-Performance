@@ -8,13 +8,23 @@ import pandas as pd
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler, StandardScaler, LabelEncoder
 
-# Veri dosyasinin yolu (ASCII-safe path)
-DATA_PATH = r"C:\YZProje\AI_Developer_Performance_Extended_1000.xlsx"
+import os as _os
+
+# Veri dosyasinin yolu - projenin kok dizininden otomatik bulunur
+_BASE_DIR = _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))  # proje koku
+DATA_PATH = _os.path.join(_BASE_DIR, "AI_Developer_Performance_Extended_1000.xlsx")
+
+# Yoksa CSV versiyonunu dene
+if not _os.path.exists(DATA_PATH):
+    DATA_PATH = _os.path.join(_BASE_DIR, "AI_Developer_Performance_Extended_1000.csv")
 
 
 def load_data():
     """Veri setini yukle ve hedef degiskeni olustur."""
-    df = pd.read_excel(DATA_PATH, header=1)
+    if DATA_PATH.endswith('.csv'):
+        df = pd.read_csv(DATA_PATH)
+    else:
+        df = pd.read_excel(DATA_PATH, header=1)
 
     # Hedef degisken: Task_Success_Rate -> 3 sinif
     def categorize(val):
