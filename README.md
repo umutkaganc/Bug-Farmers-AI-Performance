@@ -29,18 +29,223 @@ Proje kapsamında aşağıdaki algoritmalar implemente edilmiştir:
 * **Umut Kağan Ceylan** (Arayüz & Entegrasyon & Analiz)
 
 ## 🛠️ Kurulum
-Projeyi yerel makinenizde çalıştırmak için aşağıdaki adımları izleyin:
 
-**1. Repoyu Klonlayın:**
+> **Ön Gereksinim:** Devam etmeden önce aşağıdaki yazılımın sisteminizde kurulu olduğundan emin olun.
+> * **Python 3.9+** → [python.org](https://www.python.org/downloads/) adresinden indirin. Kurulum sırasında **"Add Python to PATH"** seçeneğini işaretlemeyi unutmayın.
+> * Kurulumu doğrulamak için terminalde `python --version` komutunu çalıştırın.
+
+---
+
+### Adım 1 — Projeyi Edinin
+
+Projeyi iki farklı yöntemle edinebilirsiniz:
+
+#### 🗜️ Yöntem A — ZIP Dosyasından Kurulum (Önerilen)
+
+1. Teslim edilen **`Bug-Farmers-AI-Performance.zip`** dosyasını bilgisayarınızda uygun bir konuma (örn: Masaüstü veya `C:\Projeler\`) çıkartın.
+2. Çıkarma işlemi tamamlandıktan sonra klasör yapısının şu şekilde göründüğünü doğrulayın:
+
+```
+Bug-Farmers-AI-Performance/
+├── backend/
+│   ├── app.py
+│   ├── classification.py
+│   ├── clustering.py
+│   ├── preprocessing.py
+│   └── social_network.py
+├── frontend/
+│   ├── index.html
+│   ├── app.js
+│   └── style.css
+├── AI_Developer_Performance_Extended_1000.csv
+└── requirements.txt
+```
+
+3. Terminali (CMD veya PowerShell) açın ve **ZIP'in çıkarıldığı klasörün içine** girin:
+
 ```bash
-git clone https://github.com/kullaniciadi/Bug-Farmers-AI-Performance.git
+# Örnek: Masaüstüne çıkardıysanız
+cd C:\Users\KullaniciAdi\Desktop\Bug-Farmers-AI-Performance
+```
+
+> 💡 **İpucu:** Dosya Gezgini'nde klasörü açıp adres çubuğuna `cmd` yazıp Enter'a basarsanız terminal otomatik olarak o dizinde açılır.
+
+#### 🔗 Yöntem B — Git ile Klonlama (İsteğe Bağlı)
+
+Git kuruluysa doğrudan GitHub'dan klonlayabilirsiniz:
+
+```bash
+git clone https://github.com/umutkaganc/Bug-Farmers-AI-Performance.git
 cd Bug-Farmers-AI-Performance
 ```
 
-**2. Gerekli Kütüphaneleri Yükleyin:**
+---
+
+### Adım 2 — Sanal Ortam Oluşturun (Önerilen)
+
+Bağımlılık çakışmalarını önlemek için projeye özel bir Python sanal ortamı oluşturmanız **şiddetle tavsiye edilir**:
+
+**Windows (CMD / PowerShell):**
+```bash
+python -m venv venv
+venv\Scripts\activate
+```
+
+**macOS / Linux:**
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+> Sanal ortam başarıyla etkinleştirildiğinde terminal satırınızın başında `(venv)` ifadesi görünür.
+
+---
+
+### Adım 3 — Bağımlılıkları Yükleyin
+
+Sanal ortam aktifken aşağıdaki komutu çalıştırın. Bu komut `requirements.txt` dosyasındaki tüm Python kütüphanelerini (Flask, scikit-learn, XGBoost, NetworkX vb.) otomatik olarak yükler:
+
 ```bash
 pip install -r requirements.txt
 ```
+
+Yüklenen başlıca kütüphaneler:
+
+| Kütüphane | Sürüm | Kullanım Amacı |
+| :--- | :---: | :--- |
+| `flask` | ≥2.3.0 | REST API Sunucusu |
+| `scikit-learn` | ≥1.2.2 | ML Algoritmaları & Ön İşleme |
+| `xgboost` | ≥1.7.0 | XGBoost Sınıflandırıcı |
+| `pandas` | ≥1.5.0 | Veri Yükleme & İşleme |
+| `numpy` | ≥1.23.0 | Sayısal Hesaplamalar |
+| `networkx` | ≥3.0 | Sosyal Ağ Analizi (SNA) |
+| `scipy` | ≥1.10.0 | İstatistiksel Hesaplamalar |
+
+---
+
+### Adım 4 — Uygulamayı Başlatın
+
+Kurulum tamamlandıktan sonra Flask API sunucusunu başlatın:
+
+```bash
+python backend/app.py
+```
+
+Terminalde aşağıdaki çıktıyı görüyorsanız sunucu başarıyla çalışıyor demektir:
+
+```
+[*] Veri seti yukleniyor...
+[+] Veri seti yuklendi: 963 satir, 15 sutun
+[*] Flask sunucusu baslatiliyor: http://127.0.0.1:5000
+```
+
+Ardından tarayıcınızı açın ve şu adrese gidin:
+
+```
+http://127.0.0.1:5000
+```
+
+---
+
+### 💻 VS Code ile Çalıştırma (Alternatif)
+
+Visual Studio Code kullanıyorsanız aşağıdaki adımları izleyerek projeyi VS Code üzerinden de çalıştırabilirsiniz:
+
+**1. Klasörü VS Code'da Açın:**
+
+- VS Code'u başlatın.
+- Üst menüden **File → Open Folder** seçin.
+- ZIP'i çıkardığınız `Bug-Farmers-AI-Performance` klasörünü seçip **"Klasörü Seç"** butonuna tıklayın.
+
+**2. Önerilen Uzantıları Yükleyin:**
+
+VS Code, Python projeleri için aşağıdaki uzantıları önerir — yükleyin:
+
+| Uzantı | Yayıncı | Açıklama |
+| :--- | :--- | :--- |
+| **Python** | Microsoft | Sözdizimi vurgulama, hata ayıklama |
+| **Pylance** | Microsoft | Gelişmiş kod tamamlama |
+
+**3. Python Yorumlayıcısını Seçin:**
+
+- `Ctrl + Shift + P` tuşlarına basın ve **"Python: Select Interpreter"** yazın.
+- Listede `venv` etiketli yorumlayıcıyı seçin: `.\venv\Scripts\python.exe`
+- Eğer `venv` listede görünmüyorsa önce **Adım 2**'deki sanal ortam kurulumunu tamamlayın.
+
+**4. Entegre Terminali Açın ve Uygulamayı Başlatın:**
+
+- `` Ctrl + ` `` tuşlarına basarak VS Code'un entegre terminalini açın.
+- Terminal otomatik olarak proje kök dizininde açılır. Sırasıyla şu komutları çalıştırın:
+
+```bash
+# Sanal ortamı aktifleştir (henüz aktif değilse)
+venv\Scripts\activate
+
+# Flask sunucusunu başlat
+python backend/app.py
+```
+
+- Terminal çıktısında `http://127.0.0.1:5000` adresini görünce **Ctrl tuşuna basılı tutarak** linke tıklayın — tarayıcı otomatik açılır.
+
+> 💡 **İpucu:** `backend/app.py` dosyasını açıkken sağ üstteki ▶️ **"Run Python File"** butonuna tıklamak da sunucuyu başlatır. Ancak bu durumda terminalde sanal ortamın aktif olduğundan emin olun.
+
+---
+
+### ⚠️ Sık Karşılaşılan Hatalar ve Çözümleri
+
+
+<details>
+<summary><b>❌ <code>ModuleNotFoundError: No module named 'flask'</code></b></summary>
+
+Sanal ortamın aktif olmadığını veya bağımlılıkların yüklenmediğini gösterir.
+
+```bash
+# Sanal ortamı aktifleştirin (Windows)
+venv\Scripts\activate
+
+# Ardından yeniden yükleyin
+pip install -r requirements.txt
+```
+</details>
+
+<details>
+<summary><b>❌ <code>Address already in use</code> / Port 5000 meşgul</b></summary>
+
+5000 portu başka bir uygulama tarafından kullanılıyor. Farklı bir port ile başlatın:
+
+```bash
+python backend/app.py --port 5001
+```
+
+Ya da `backend/app.py` dosyasının son satırındaki `port=5000` değerini değiştirin.
+</details>
+
+<details>
+<summary><b>❌ <code>FileNotFoundError: dataset/... .csv</code></b></summary>
+
+Komut `Bug-Farmers-AI-Performance/` kök dizininden değil, farklı bir dizinden çalıştırılıyor olabilir. Doğru dizinde olduğunuzdan emin olun:
+
+```bash
+# Proje kök dizinine gidin
+cd Bug-Farmers-AI-Performance
+
+# Ardından başlatın
+python backend/app.py
+```
+</details>
+
+<details>
+<summary><b>❌ macOS'ta <code>pip</code> yerine <code>pip3</code> / <code>python3</code> kullanımı</b></summary>
+
+macOS sistemlerde Python 3 için `python3` ve `pip3` komutlarını kullanın:
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+pip3 install -r requirements.txt
+python3 backend/app.py
+```
+</details>
 
 ## ▶️ Kullanım
 Uygulamayı başlatmak için projeyi yerel ortamınızda çalıştırın:
