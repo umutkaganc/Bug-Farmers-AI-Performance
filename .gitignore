@@ -2,6 +2,7 @@
 /pdf/
 *.pdf
 *.txt
+!requirements.txt
 /sunum/
 /yeni dokuman/
 
