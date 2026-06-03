@@ -1,0 +1,92 @@
+========================================================================
+YAPAY ZEKA DERSİ PROJESİ - KAPSAMLI KURULUM VE ÇALIŞTIRMA REHBERİ
+========================================================================
+
+Sayın Hocam,
+Bu proje; arkaplanda makine öğrenmesi algoritmalarını koşturan bir Python (Flask) sunucusu ve ön yüzde (frontend) HTML/JS/CSS kullanan bir web uygulaması mimarisiyle geliştirilmiştir. 
+
+Projeyi kendi bilgisayarınızda test etmek için aşağıda belirtilen ÜÇ FARKLI yöntemden dilediğinizi seçebilirsiniz:
+
+------------------------------------------------------------------------
+YÖNTEM 1: TEK TIKLA OTOMATİK KURULUM VE ÇALIŞTIRMA (TAVSİYE EDİLEN)
+------------------------------------------------------------------------
+Sizin için tüm kurulum süreçlerini otomatikleştiren bir başlatma dosyası hazırladım.
+
+1. Bilgisayarınızda Python 3.8 veya daha üstü bir sürümün yüklü olduğundan emin olun.
+   (ÖNEMLİ: Python'u kurarken "Add Python to PATH" veya "Add python.exe to PATH" kutucuğunun İŞARETLENMİŞ olması zorunludur.)
+2. Proje dosyalarını .zip'ten çıkarın ve klasöre girin.
+3. Klasör içindeki "baslat.bat" isimli dosyaya çift tıklayın.
+4. Açılan siyah terminal penceresi, gerekli tüm yapay zeka kütüphanelerini otomatik olarak indirecek ve sunucuyu başlatacaktır.
+5. Veri setinin okunması tamamlandığında (yaklaşık 5 saniye sonra) tarayıcınız otomatik açılacak ve proje karşınıza gelecektir.
+   -> (Not: Projeyi incelediğiniz süre boyunca siyah terminal penceresini kapatmayınız.)
+
+
+------------------------------------------------------------------------
+YÖNTEM 2: ADIM ADIM MANUEL KURULUM (EĞER 1. YÖNTEM ÇALIŞMAZSA)
+------------------------------------------------------------------------
+Eğer "baslat.bat" dosyası güvenlik/antivirüs engeline takılırsa aşağıdaki manuel adımları izleyebilirsiniz:
+
+ADIM 1: Python ve PATH Kontrolü
+- Başlat menüsüne "cmd" yazarak Komut İstemini (Siyah Ekran) açın.
+- "python --version" komutunu yazıp Enter'a basın. (Python 3.x sürümünü görmelisiniz).
+- Eğer hata alırsanız Python bilgisayarınızda yüklü değildir veya PATH ayarlarına eklenmemiştir.
+
+ADIM 2: Terminalde Proje Klasörünün İçine Girme
+Komut isteminde doğru klasörde çalışmak çok önemlidir. Bunu iki yolla yapabilirsiniz:
+
+Seçenek A (Kolay Yol):
+- Normal pencerede "YapayZekaProjeDosyası" klasörünün içine girin.
+- En üstteki adres çubuğuna tıklayın, oradaki yazıyı silip "cmd" yazın ve Enter'a basın. Terminal otomatik olarak o klasörde açılacaktır.
+
+Seçenek B (Komut/Kod Kullanarak Girme):
+- Başlat menüsünden Komut İstemini (cmd) açın.
+- Bulunduğunuz dizinden projenin olduğu klasöre gitmek için "cd" (change directory) komutunu kullanın. 
+  Örneğin proje Masaüstündeyse şu komutu yazıp Enter'a basın:
+  cd Desktop\YapayZekaProjeDosyası
+  (Not: Dosyayı indirdiğiniz dizine göre yolu "cd Downloads\YapayZekaProjeDosyası" şeklinde güncelleyebilirsiniz.)
+
+ADIM 3: Kütüphanelerin Kurulumu
+- Siyah terminal ekranında, projenin "YapayZekaProjeDosyası" dizininde olduğunuza emin olduktan sonra şu komutu çalıştırın:
+  pip install -r requirements.txt
+- Yükleme işleminin bitmesini bekleyin.
+
+ADIM 4: Sunucuyu Başlatma
+- Kurulum bitince aynı siyah ekranda sunucuyu ayaklandırmak için şu komutu çalıştırın:
+  python backend/app.py
+- Ekranda "[*] Flask sunucusu baslatiliyor: http://127.0.0.1:5000" yazısını gördüğünüzde sunucu hazır demektir.
+
+ADIM 5: Projeyi Tarayıcıda Görüntüleme
+- Tercih ettiğiniz web tarayıcısını (Chrome, Edge vb.) açın.
+- Adres çubuğuna şunu yapıştırıp Enter'a basın:
+  http://127.0.0.1:5000
+
+
+------------------------------------------------------------------------
+YÖNTEM 3: BİR IDE (VS CODE, PYCHARM VB.) KULLANARAK ÇALIŞTIRMA
+------------------------------------------------------------------------
+Projeyi doğrudan bir kod editöründe açıp oradan çalıştırmayı tercih ederseniz:
+
+1. Proje dosyalarını .zip'ten çıkarın.
+2. Kullandığınız IDE'yi (Visual Studio Code, PyCharm vb.) açın.
+3. Menüden "File -> Open Folder" (Dosya -> Klasör Aç) diyerek zipten çıkardığınız "YapayZekaProjeDosyası" isimli ANA KLASÖRÜ seçin. (Sadece backend klasörünü seçmeyin, tüm projeyi kapsayan ana klasörü seçin).
+4. IDE'nin kendi entegre terminalini açın (VS Code için üst menüden Terminal -> New Terminal).
+5. Açılan alt terminal ekranında kütüphaneleri kurmak için şu komutu yazıp Enter'a basın:
+   pip install -r requirements.txt
+6. Kurulum bittikten sonra projeyi başlatmak için şu komutu çalıştırın:
+   python backend/app.py
+7. Proje çalıştıktan sonra tarayıcınızda "http://127.0.0.1:5000" adresine giderek arayüzü görüntüleyebilirsiniz.
+
+
+------------------------------------------------------------------------
+SIK KARŞILAŞILAN BAZI HATALAR VE ÇÖZÜMLERİ (SORUN GİDERME)
+------------------------------------------------------------------------
+HATA: "python is not recognized as an internal or external command" 
+ÇÖZÜM: Bilgisayarınızda Python yüklü değil veya yüklenirken "Add to PATH" seçeneği işaretlenmemiş. Python'u silip tekrar yüklerken o kutucuğu işaretleyin.
+
+HATA: "ModuleNotFoundError: No module named 'X'"
+ÇÖZÜM: Gerekli bir kütüphane eksik kurulmuş demektir. Komut ekranında "pip install X" (X yerine o modülün adını yazarak) modülü elle kurabilirsiniz.
+
+HATA: Adres çubuğuna giriyorum ama sayfa yüklenmiyor.
+ÇÖZÜM: Arka planda terminal ekranının/sunucunun çalışır durumda olduğundan emin olun. Terminal kapatıldığında sunucu kapanır.
+
+İyi çalışmalar dilerim.

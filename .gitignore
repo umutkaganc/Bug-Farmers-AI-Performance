@@ -3,6 +3,7 @@
 *.pdf
 *.txt
 !requirements.txt
+!KURULUM.txt
 /sunum/
 /yeni dokuman/
 
